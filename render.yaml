@@ -1,0 +1,26 @@
+services:
+  # Backend: Spring Boot
+  - type: web
+    name: votesecure-backend
+    runtime: docker
+    plan: free
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: PORT
+        value: 10000 # Render uses 10000 by default for free tier
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:h2:mem:votesecure;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      - key: ALLOWED_ORIGINS
+        value: https://votesecure-frontend.onrender.com
+
+  # Frontend: React + Vite
+  - type: web
+    name: votesecure-frontend
+    runtime: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    publishDir: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://votesecure-backend.onrender.com/api
