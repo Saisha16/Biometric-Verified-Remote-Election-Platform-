@@ -15,8 +15,9 @@ services:
         value: https://votesecure-frontend.onrender.com
 
   # Frontend: React + Vite
-  - type: static
+  - type: web
     name: votesecure-frontend
+    runtime: static
     buildCommand: cd frontend && npm install && npm run build
     publishDir: frontend/dist
     envVars:
