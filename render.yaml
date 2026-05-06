@@ -1,5 +1,6 @@
+# yaml-language-server: $schema=https://render.com/schema/render.yaml.json
 services:
-  # Backend: Spring Boot
+  # Backend: Spring Boot (Dockerized)
   - type: web
     name: votesecure-backend
     runtime: docker
@@ -14,9 +15,10 @@ services:
       - key: ALLOWED_ORIGINS
         value: https://votesecure-frontend.onrender.com
 
-  # Frontend: React + Vite
-  - type: static
+  # Frontend: React + Vite (Static)
+  - type: web
     name: votesecure-frontend
+    runtime: static
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/dist
     envVars:
