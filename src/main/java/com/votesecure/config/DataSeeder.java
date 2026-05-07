@@ -39,6 +39,9 @@ public class DataSeeder implements CommandLineRunner {
     private final VoteEncryptionService encryptionService;
     private final HashChainService hashChainService;
 
+    @org.springframework.beans.factory.annotation.Value("${server.port:8080}")
+    private String port;
+
     @Override
     public void run(String... args) {
         log.info("=== Seeding Demo Data ===");
@@ -96,8 +99,8 @@ public class DataSeeder implements CommandLineRunner {
         log.info("  Voters: 15 (with mock Aadhaar)");
         log.info("  Booth Officer: officer1 / officer123");
         log.info("  Admin: admin / admin123");
-        log.info("  Swagger UI: http://localhost:8080/swagger-ui.html");
-        log.info("  H2 Console: http://localhost:8080/h2-console");
+        log.info("  Swagger UI: http://localhost:{}/swagger-ui.html", port);
+        log.info("  H2 Console: http://localhost:{}/h2-console", port);
         log.info("==========================================");
     }
 
