@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Users, Vote, Link, Play, ShieldCheck, Loader2, RotateCcw } from 'lucide-react';
 import { api } from '../api/apiClient';
 
